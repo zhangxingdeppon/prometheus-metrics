@@ -19,7 +19,7 @@ func MwPrometheusHttp(c *gin.Context) {
 		stat.GaugeVecApiError.WithLabelValues("API").Inc()
 	}
 	c.Next()
-
+    // after request
 	end := time.Now()
 	d := end.Sub(start) // time.Millisecond
 	log.Println("the request duration time : ",d)
