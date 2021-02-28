@@ -19,16 +19,16 @@ func main()  {
 			"path": c.FullPath(),
 		})
 	}
-	//start := time.Now()
+	wrongHandler := func(c *gin.Context) {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"path": c.FullPath(),
+		})
+	}
 	api.GET("/test",defaultHandler)
-	api.GET("/test/wrong",defaultHandler)
-	// after request
-	
-	
-
+	api.GET("/test/wrong",wrongHandler)
 	// r.GET("/",func (c *gin.Context)  {
 	// 	c.String(200, "Hello, Bryan!")
 	// })
-	r.Run()
+	r.Run(":8888")
 
 }
